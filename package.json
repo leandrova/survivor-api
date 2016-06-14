@@ -1,0 +1,28 @@
+{
+  "name": "survivorfc.com.br",
+  "version": "1.0.0",
+  "description": "survivor-api",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leandrova/survivor-api.git"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "Leandro Viana",
+  "contributors": [
+    {
+      "name": "Leandro Viana",
+      "email": "leandroviana@gmail.com"
+    }
+  ],
+  "license": "Public",
+  "homepage": "http://survivorfc.com.br/",
+  "devDependencies": {
+    "express": "^4.13.0"
+  },
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
