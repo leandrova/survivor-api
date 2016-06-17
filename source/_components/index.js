@@ -2,9 +2,13 @@
 
 class Base {
 
- constructor() {
- 	console.log('Constructor Base')
- }
+  constructor() {
+    console.log('Constructor Base')
+  }
+
+  reason(status, descripton){
+    return 'vai';
+  }
 
 }
 

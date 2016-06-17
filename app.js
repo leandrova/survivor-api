@@ -14,9 +14,10 @@ app.get('/', function(req, res) {
 
 app.get('/authentication', function(req, res) {
 	var auth = new Authentication();
+	auth.destructor();
     res.send('authentication');
 });
 
 app.listen(port, function() {
-    console.log('Is running!!');
+	console.log('Is running!!');
 });
