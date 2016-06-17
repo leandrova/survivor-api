@@ -23,6 +23,12 @@
     "express": "^4.13.0"
   },
   "dependencies": {
+<<<<<<< Updated upstream
     "express": "^4.13.4"
+=======
+    "express": "^4.13.3",
+    "mysql": "^2.11.1",
+    "node-env-file": "^0.1.8"
+>>>>>>> Stashed changes
   }
 }
