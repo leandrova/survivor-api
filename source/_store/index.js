@@ -2,27 +2,24 @@
 
 var mysql	= require('mysql');
 var env 	= require('node-env-file');
+var async = require('async');
 
 var Base = require('../_components/index.js');
+var Func = new Base();
 
 env('./.env', { overwrite: true });
 
-var connection = null;
-var sql = null;
-var resultado = null;
-var linhas = null;
-var ID = null;
-var sqlList = [];
-var mysqlError = null;
+global.sql = null;
 
-class Data extends Base {
+var connection = null;
+
+class Data {
 
  constructor() {
-  super();
+
  }
 
  conectDataBase() {
-  console.log('Constructor Store');
   connection = mysql.createConnection({
    connectionLimit : 100,
    host     : process.env.DATA_HOST,
@@ -39,62 +36,69 @@ class Data extends Base {
  }
 
  desconectDataBase(connection) {
-  console.log('Destructor Store');
   connection.end();
  }
 
- processaSql() {
+ processaSql(sql, callback) {
 
   connection = this.conectDataBase();
-  
   connection.query({
-	  sql: this.sql,
-	  timeout: 40000 // 40s 
-	}, function (error, results, fields) {
-		// this.linhas = results.affectedRows;
-    if (error.code) {
-      // result = this.__reason(0, error.code);
+      sql: sql,
+      timeout: 40000 // 40s 
+  }, function (error, results, fields) {
+    var reason, lines = '';
+    /* */
+    if (error) {
+      reason = Func.reason(0, error.code);
     } else {
-      // result = this.__reason(1);
+      reason = Func.reason(1);
+      lines = results.length;
     }
-    // console.log(result);
-    console.log(this);
-		// console.log('error', error.code);
-		// console.log('results', results);
-		// console.log('fields', fields);
-	});
+    connection.end();
+    /* */
+    callback({
+      error: error, 
+      results: results, 
+      lines: lines, 
+      reason: reason 
+    });
 
-  this.desconectDataBase(connection);
+  });
 
  }
 
  consulta(array) {
 
   if (array['campos']) {
-   var campos = array['campos'];
+   var sql = 'select ' + array['campos'] + ' ';;
   } else {
-   var campos = '*';
+   var sql = 'select * ';
   }
 
-  this.sql = 'select ' + campos + ' ';
-
-  this.sql += 'from ' + array['tabelas'] + ' ';
+  sql += 'from ' + array['tabelas'] + ' ';
 
   if (array['condicoes']) {
-   this.sql += 'where ' + array['condicoes'] + ' ';
+   sql += 'where ' + array['condicoes'] + ' ';
   }
   if (array['agrupamento']) {
-   this.sql += 'group by ' + array['agrupamento'] + ' ';
+   sql += 'group by ' + array['agrupamento'] + ' ';
   }
   if (array['ordenacao']) {
-   this.sql += 'order by ' + array['ordenacao'] + ' ';
+   sql += 'order by ' + array['ordenacao'] + ' ';
   }
   if (array['limite']) {
-   this.sql += 'limit ' + array['limite'] + ' ';
+   sql += 'limit ' + array['limite'] + ' ';
   }
 
-  this.processaSql()
+  return sql;
 
+ }
+
+ cadastro(array) {
+  sql  = 'INSERT INTO ' + array['tabelas'] + ' ';
+  sql += '(' + array['campos'] + ') ';
+  sql += 'VALUES (' + array['values'] + ') ';
+  return sql;
  }
 
  GetResultado() {
