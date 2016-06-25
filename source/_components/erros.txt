@@ -1,0 +1,18 @@
+
+
+/* Channels */
+
+1000 - Channel invalido
+
+/* Autenticação */
+
+2000 - Login ou Senha Invalidos
+
+/* Sessão */
+
+3000 - Sessão invalida
+3100 - Falha na criação da sessão
+
+/* Service Map */
+
+4000 - Falha na consulta do mapa

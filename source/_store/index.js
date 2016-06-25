@@ -101,6 +101,13 @@ class Data {
   return sql;
  }
 
+ altera(array) {
+    sql  = 'UPDATE ' + array['tabelas'] + ' ';
+    sql += 'SET ' + array['campos'] + ' ';
+    sql += 'WHERE ' + array['condicoes'] + ' ';
+    return sql;
+  }
+
  GetResultado() {
   return this.resultado;
  }
