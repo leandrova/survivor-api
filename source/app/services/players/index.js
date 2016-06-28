@@ -1,0 +1,1 @@
+@@include('../../../_services/players/list.js')
