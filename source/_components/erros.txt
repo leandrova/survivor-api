@@ -16,3 +16,11 @@
 /* Service Map */
 
 4000 - Falha na consulta do mapa
+
+/* Palpite */
+
+5000 - Rodada fechada
+5100 - Falha ao apagar um palpite ja feito
+5200 - Falha ao alterar um palpite ja feito
+5300 - Falha ao cadastrar um palpite ja feito
+5400 - Time já utilizado em um palpite anterior

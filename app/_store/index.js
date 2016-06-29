@@ -105,6 +105,12 @@ class Data {
     return sql;
   }
 
+ deleta(array) {
+    sql  = 'delete from ' + array['tabelas'] + ' ';
+    sql += 'where ' + array['condicoes'] + ' ';
+    return sql;
+  }
+
  GetResultado() {
   return this.resultado;
  }

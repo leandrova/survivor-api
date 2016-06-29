@@ -17,7 +17,7 @@
       if (res.lines) {
         var data = res.results[0];
 
-        var roundStatus = 0;
+        var roundStatus = 1;
         if ( Func.dataInterna(data.dataJogo) > hojeData ){
           var roundStatus = 1;
         } else if ( Func.dataInterna(data.dataJogo) == hojeData ) {
@@ -25,7 +25,7 @@
             var roundStatus = 1;
           }
         }
-
+        
         callback({
           correntRound : data.codigoRodada,
           roundStatus : roundStatus,

@@ -9,7 +9,7 @@ class Base {
   }
 
   reason(status, error, descripton){
-    if (status)
+    if ((status)&&(!descripton))
     	descripton = 'Requisicao realizada com sucesso.';
     return new Object({
       status: status,

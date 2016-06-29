@@ -16,6 +16,7 @@ class Map extends Base {
   var roundNumber   = req['roundNumber'];
   var codigoJogador   = req['codigoJogador'];
   var codigoSurvivor  = req['codigoSurvivor'];
+  var codigoRodada  = req['codigoRodada'];
 
   if (!codigoJogador)
     var codigoJogador   = session['codigoJogador'];
@@ -23,40 +24,51 @@ class Map extends Base {
   if (!codigoSurvivor)
     var codigoSurvivor  = session['codigoSurvivor'];
 
+  if (!codigoRodada)
+    var codigoRodada  = session['correntRound'];
+
   var correntRound  = session['correntRound'];
   var roundStatus   = session['roundStatus'];
 
   Data.processaSql(
     Data.consulta({
-      campos    :   'sm.codigoJogador, ' +
-                    '(select nickname from sur_jogadores sj where sj.codigoSurvivor = sm.codigoSurvivor and sj.codigoJogador = sm.codigoJogador ) nickname, ' +
-                    'sm.colocacao, sm.nmVidas, sm.nmVitorias, sm.nmEmpates, sm.nmDerrotas, sm.codigoTime, st.siglaTime, st.nomeTime, sm.resultado, sm.codigoRodada',
-      tabelas   :   'sur_mapa sm, ( select * from sur_times st where codigoTime in (select codigoTimeA from sur_rodadas where codigoSurvivor = "' + codigoSurvivor + '") ) st ',
-      condicoes :   'sm.codigoSurvivor = "' + codigoSurvivor + '" and sm.codigoJogador = "' + codigoJogador + '"' +
-                    'and sm.codigoTime = st.codigoTime ',
+      campos    :   'sm.codigoJogador, sj.nickname, sm.colocacao, sm.nmVidas, sm.nmVitorias, ' +
+                    'sm.nmEmpates, sm.nmDerrotas, sm.codigoTime, st.siglaTime, st.nomeTime, ' +
+                    'sm.resultado, sm.codigoRodada, sp.codigoTime palpite',
+      tabelas   :   'sur_mapa sm left join sur_times st on sm.codigoTime = st.codigoTime ' +
+                    'left join sur_jogadores sj on sj.codigoSurvivor = sm.codigoSurvivor and sj.codigoJogador = sm.codigoJogador ' +
+                    'left outer join sur_palpites sp on sp.codigoSurvivor = sm.codigoSurvivor and sp.codigoJogador = sm.codigoJogador and sp.codigoTime = sm.codigoTime and sp.codigoRodada = ' + codigoRodada,
+      condicoes :   'sm.codigoSurvivor = ' + codigoSurvivor + ' and sm.codigoJogador = ' + codigoJogador,
       ordenacao :   '2, 10'
     }),
     function (res) {
       if ( res.lines ){
         var response = {}, list = [], classification = {}, i = 0;
-
+        var data = res.results[0];
         classification = {
-          codigoJogador: res.results[0].codigoJogador,
-              nickname: res.results[0].nickname,
-              colocacao: res.results[0].colocacao,
-              nmVidas: res.results[0].nmVidas,
-              nmVitorias: res.results[0].nmVitorias,
-              nmEmpates: res.results[0].nmEmpates,
-              nmDerrotas: res.results[0].nmDerrotas
+          codigoJogador: data.codigoJogador,
+              nickname: data.nickname,
+              colocacao: data.colocacao,
+              nmVidas: data.nmVidas,
+              nmVitorias: data.nmVitorias,
+              nmEmpates: data.nmEmpates,
+              nmDerrotas: data.nmDerrotas
         }
 
         for (i = 0; i < res.lines; i++) { 
+          var data = res.results[i], palpite = null;
+          
+          if ((data.codigoJogador == codigoJogador)&&(data.palpite == data.codigoTime))
+            var palpite = true;
+
+
           list.push({
-            codigoTime: res.results[i].codigoTime,
-            siglaTime: res.results[i].siglaTime,
-            nomeTime: res.results[i].nomeTime,
-            resultado: res.results[i].resultado,
-            codigoRodada: res.results[i].codigoRodada
+            codigoTime: data.codigoTime,
+            siglaTime: data.siglaTime,
+            nomeTime: data.nomeTime,
+            resultado: data.resultado,
+            codigoRodada: data.codigoRodada,
+            palpite : palpite
           });
         }
 
@@ -100,7 +112,7 @@ class Map extends Base {
       if (res.lines) {
         var data = res.results[0];
 
-        var roundStatus = 0;
+        var roundStatus = 1;
         if ( Func.dataInterna(data.dataJogo) > hojeData ){
           var roundStatus = 1;
         } else if ( Func.dataInterna(data.dataJogo) == hojeData ) {
@@ -108,7 +120,7 @@ class Map extends Base {
             var roundStatus = 1;
           }
         }
-
+        
         callback({
           correntRound : data.codigoRodada,
           roundStatus : roundStatus,

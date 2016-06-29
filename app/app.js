@@ -227,6 +227,37 @@ app.post('/betting', function(req, res) {
 
 });
 
+app.post('/betting/bet', function(req, res) {
+	res.setHeader('Content-Type', 'application/json');
+
+	var betting = require('./services/betting/bet');
+	var bet = new betting();
+
+	bet.checkSession(
+		req.headers,
+		function(ress){
+			if (ress.lines) {
+				bet.correntRound(
+					req.body, ress.results,
+					function(resss){
+						bet.bet(
+							req.body, resss,
+							function(ressss){
+								res.send(ressss);
+							}
+						);
+					}
+				);
+			} else {
+				res.send({ 
+					reason: Func.invalidSession()
+				});
+			}
+		}
+	);
+
+});
+
 app.listen(port, function() {
 	console.log('Is running!!');
 });

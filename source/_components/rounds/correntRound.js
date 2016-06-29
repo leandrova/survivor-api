@@ -25,7 +25,7 @@
             var roundStatus = 1;
           }
         }
-
+        
         callback({
           correntRound : data.codigoRodada,
           roundStatus : roundStatus,
@@ -43,7 +43,6 @@
           limite    : '1'
         }),
           function (ress) {
-            console.log('=> ', ress);
             if (ress.lines) {
               var data = ress.results[0];
               var response = {
