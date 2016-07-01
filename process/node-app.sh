@@ -1,4 +1,5 @@
 #!/bin/bash
+export TZ=America/Sao_Paulo
 TODAY=$(date +"%d-%m-%Y")
 TIME=$(date +"%H-%M-%S")
 ARQ_EM_PROCE=$(ps -ef | grep app.js | wc -l)
@@ -13,4 +14,3 @@ then
 else
   echo "# APP em execucao as $TODAY $TIME" > LOG_CRON
 fi
-
