@@ -51,6 +51,10 @@ class Base {
   	return md5(this.date() + '' + this.time() + '' + a);
   }
 
+  encryption(a) {
+    return md5(a);
+  }
+
   invalidChannel() {
   	return this.reason(0, 1000, 'Channel invalido.');
   }
