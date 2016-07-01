@@ -3,8 +3,8 @@ export TZ=America/Sao_Paulo
 TODAY=$(date +"%d-%m-%Y")
 TIME=$(date +"%H-%M-%S")
 ARQ_EM_PROCE=$(ps -ef | grep app.js | wc -l)
-LOG_NODE="/home/leandroviana/survivor-api/process/logs/app-log-$TODAY-$TIME.log"
-LOG_PROC="/home/leandroviana/survivor-api/process/logs/app-start-$TODAY-$TIME.log"
+LOG_NODE="/home/leandroviana/survivor-api/process/logs/node/node-$TODAY-$TIME.log"
+LOG_PROC="/home/leandroviana/survivor-api/process/logs/app/app-$TODAY-$TIME.log"
 LOG_CRON="/home/leandroviana/survivor-api/process/logs/cron.log"
 if [ $ARQ_EM_PROCE -eq 1 ]
 then
