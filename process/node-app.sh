@@ -1,6 +1,6 @@
 #!/bin/bash
 export TZ=America/Sao_Paulo
-TODAY=$(date +"%d-%m-%Y")
+TODAY=$(date +"%Y-%m-%d")
 TIME=$(date +"%H-%M-%S")
 ARQ_EM_PROCE=$(ps -ef | grep app.js | wc -l)
 LOG_NODE="/home/leandroviana/survivor-api/process/logs/node/node-$TODAY-$TIME.log"
