@@ -9,8 +9,8 @@ LOG_CRON="/home/leandroviana/survivor-api/process/logs/cron.log"
 if [ $ARQ_EM_PROCE -eq 1 ]
 then
   echo "# Executando Deploy"
-  echo "Processo iniciando em $TODAY as $TIME" > $LOG_PROC
-  node /home/leandroviana/survivor-api/app/app.js > LOG_NODE &
+  echo "Processo iniciando em $TODAY as $TIME" &>> $LOG_PROC
+  node /home/leandroviana/survivor-api/app/app.js &>> $LOG_NODE &
 else
-  echo "# APP em execucao as $TODAY $TIME" > LOG_CRON
+  echo "# APP em execucao as $TODAY $TIME" &>> $LOG_CRON
 fi
