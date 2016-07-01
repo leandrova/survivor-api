@@ -8,6 +8,15 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.all('*', function(req, res, next){
+	res.header('Access-Control-Allow-Credentials', true);
+	res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'service-name, service-token, service-session, Content-Type');
+	res.header('Content-Type', 'application/json');
+	next();
+})
+
 var Base = require('./_components/index.js');
 var Func = new Base();
 
@@ -20,8 +29,6 @@ app.get('/', function(req, res) {
 });
 
 app.post('/authentication', function(req, res) {
-	res.setHeader('Content-Type', 'application/json');
-
 	var authentication = require('./services/authentication');	
 
 	var auth = new authentication();

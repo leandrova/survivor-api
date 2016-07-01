@@ -8,13 +8,13 @@ class Base {
   constructor() {
   }
 
-  reason(status, error, descripton){
-    if ((status)&&(!descripton))
-    	descripton = 'Requisicao realizada com sucesso.';
+  reason(status, error, description){
+    if ((status)&&(!description))
+    	description = 'Requisicao realizada com sucesso.';
     return new Object({
       status: status,
       error: error,
-      descripton: descripton
+      description: description
     });
   }
 

@@ -51,7 +51,7 @@ class Data {
       reason = Func.reason(1);
       lines = results.length;
     }
-    connection.end();
+    // connection.end();
     /* */
     callback({
       error: error, 

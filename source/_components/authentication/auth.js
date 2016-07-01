@@ -3,6 +3,9 @@
   var pass = req['pass'];
   var saveSession = req['saveSession'];
 
+  if (!saveSession)
+    saveSession = 0;
+
   Data.processaSql(
     Data.consulta({
       campos    : ' us.codigoUsuario, sj.codigoJogador, sj.codigoSurvivor ',
@@ -18,7 +21,6 @@
         var codigoUsuario = (res.results[0]).codigoUsuario;
         var codigoJogador = (res.results[0]).codigoJogador;
         var codigoSurvivor = (res.results[0]).codigoSurvivor;
-        var saveSession = saveSession;
 
         Data.processaSql(
           Data.cadastro({
