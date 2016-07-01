@@ -10,7 +10,7 @@ if [ $ARQ_EM_PROCE -eq 1 ]
 then
   echo "# Executando Deploy"
   echo "Processo iniciando em $TODAY as $TIME" &>> $LOG_PROC
-  screen -d -m -S survivor node /home/leandroviana/survivor-api/app/app.js &>> $LOG_NODE &
+  node /home/leandroviana/survivor-api/app/app.js &>> $LOG_NODE &
 else
   echo "# APP em execucao as $TODAY $TIME" &>> $LOG_CRON
 fi
