@@ -6,8 +6,8 @@ var forever = require('gulp-forever-monitor');
 gulp.task('forever', function() {
 
   var foreverMonitorOptions = { 
-    // env: process.env,
-    // args: process.argv,
+    env: process.env,
+    args: process.argv,
     watch: true,
     watchIgnorePatterns:  ['.*', 'node_modules/**', 'public/**', 'temp/**']
   }
