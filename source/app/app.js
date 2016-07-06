@@ -61,16 +61,16 @@ app.post('/authentication', function(req, res) {
 app.get('/map', function(req, res) {
 	var map = require('./services/map');
 	var mp = new map();
-	// mp.auditing('map', 'start', req.body, req.headers);
+	mp.auditing('map', 'start', req.body, req.headers);
 	mp.checkSession(
 		req.headers,
 		function(ress){
-			// mp.auditing('map', 'checkSession', req.body, req.headers, ress);
+			mp.auditing('map', 'checkSession', req.body, req.headers, ress);
 			if (ress.lines) {
 				mp.correntRound(
 					req.body, ress.results,
 					function(resss){
-						// mp.auditing('map', 'correntRound', req.body, req.headers, resss);
+						mp.auditing('map', 'correntRound', req.body, req.headers, resss);
 						mp.list(
 							req.body, resss,
 							function(ressss){
@@ -92,7 +92,6 @@ app.get('/map', function(req, res) {
 			}
 		}
 	);
-
 });
 
 app.get('/rounds', function(req, res) {

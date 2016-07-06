@@ -64,8 +64,12 @@ class Base {
   }
 
   getCookie(a, b) {
-  	var c = cookie.parse(a.cookie);
-  	return c[b];
+    var response = '';
+    if (typeof a.cookie !== "undefined"){
+      var c = cookie.parse(a.cookie);
+      var response = c[b];
+    }
+  	return response;
   }
 
   tokenGeneration(a) {
