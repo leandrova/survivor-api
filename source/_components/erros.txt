@@ -24,3 +24,8 @@
 5200 - Falha ao alterar um palpite ja feito
 5300 - Falha ao cadastrar um palpite ja feito
 5400 - Time já utilizado em um palpite anterior
+
+/* Erros de conexão de banco */
+9000 - Error in connection database
+9001 - Error in connection database
+9002 - Falha na consulta ao banco de dados

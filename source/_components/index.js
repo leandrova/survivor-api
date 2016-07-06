@@ -9,6 +9,27 @@ class Base {
   }
 
   reason(status, error, description){
+
+    var listError = new Object({
+      '1000': 'Channel invalido',
+      '2000': 'Login ou Senha Invalidos',
+      '3000': 'Sessão invalida',
+      '3100': 'Falha na criação da sessão',
+      '4000': 'Falha na consulta do mapa',
+      '5000': 'Rodada fechada',
+      '5100': 'Falha ao apagar um palpite ja feito',
+      '5200': 'Falha ao alterar um palpite ja feito',
+      '5300': 'Falha ao cadastrar um palpite ja feito',
+      '5400': 'Time já utilizado em um palpite anterior',
+      '9000': 'Error in connection database',
+      '9001': 'Error in connection database',
+      '9002': 'Falha na consulta ao banco de dados',
+    });
+
+    if (listError[error] !== 'undefined'){
+      description = listError[error] + ' (' + description + ')';
+    }
+
     if ((status)&&(!description))
     	description = 'Requisicao realizada com sucesso.';
     return new Object({
@@ -61,6 +82,17 @@ class Base {
 
   invalidSession() {
   	return this.reason(0, 3000, 'A sessão não está mais ativa.');
+  }
+
+  addslashes(string) {
+    return string.replace(/\\/g, '\\\\').
+        replace(/\u0008/g, '\\b').
+        replace(/\t/g, '\\t').
+        replace(/\n/g, '\\n').
+        replace(/\f/g, '\\f').
+        replace(/\r/g, '\\r').
+        replace(/'/g, '\\\'').
+        replace(/"/g, '\\"');
   }
 
 }
