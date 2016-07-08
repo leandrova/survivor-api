@@ -31,9 +31,10 @@
     "cookie": "^0.3.1",
     "express": "^4.13.3",
     "forever": "^0.15.2",
-    "gulp-forever-monitor": "0.0.3",
     "md5": "^2.1.0",
     "mysql": "^2.11.1",
-    "node-env-file": "^0.1.8"
+    "node-env-file": "^0.1.8",
+    "node-supervisor": "^1.0.2",
+    "supervisor": "^0.11.0"
   }
 }

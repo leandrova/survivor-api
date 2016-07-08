@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.all('*', function(req, res, next){
 	res.header('Access-Control-Allow-Credentials', true);
 	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Headers', 'service-name, service-token, service-session, Content-Type, user, pass, saveSessionn');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'service-name, service-token, service-session, Content-Type');
 	res.header('Content-Type', 'application/json');
 	next();
 })
@@ -40,7 +40,7 @@ app.post('/authentication', function(req, res) {
 			auth.auditing('authentication', 'checkChannel', req.body, req.headers, ress);
 			if (ress.lines) {
 				auth.authentication(
-					req.body,
+					req.headers,
 					function(resss){
 						auth.auditing('authentication', 'authentication', req.body, req.headers, resss);
 						if (resss.authentication) {

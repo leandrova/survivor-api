@@ -27,7 +27,7 @@ class Base {
     });
 
     if (listError[error] !== 'undefined'){
-      description = listError[error] + ' (' + description + ')';
+      description = listError[error];
     }
 
     if ((status)&&(!description))
@@ -74,6 +74,10 @@ class Base {
 
   tokenGeneration(a) {
   	return md5(this.date() + '' + this.time() + '' + a);
+  }
+
+  md5(a) {
+    return md5(a);
   }
 
   encryption(a) {
