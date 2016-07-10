@@ -16,7 +16,7 @@
     Data.consulta({
       campos    : ' sr.codigoRodada, st1.siglaTime siglaTimeA, st1.nomeTime nomeTimeA, sr.placarTimeA, st2.siglaTime siglaTimeB, st2.nomeTime nomeTimeB, sr.placarTimeB, sr.dataJogo, sr.horaJogo, se.nomeEstadio ',
       tabelas   : ' sur_rodadas sr  left join sur_times st1 on st1.codigoTime = sr.codigoTimeA left join sur_times st2 on st2.codigoTime = sr.codigoTimeB left join sur_estadios se on se.codigoEstadio = sr.codigoEstadio ',
-      condicoes : ' sr.codigoSurvivor = "' + codigoSurvivor + '" ' + (roundNumber ? ' and sr.codigoRodada = "' + roundNumber + '"' : '') + ' ',
+      condicoes : ' sr.codigoSurvivor = "' + codigoSurvivor + '" ' + (roundNumber ? ' and sr.codigoRodada = "' + roundNumber + '"' : ' and sr.codigoRodada = "' + correntRound + '"') + ' ',
       ordenacao : ' sr.codigoRodada, sr.dataJogo, sr.horaJogo, st1.nomeTime '
     }),
     function (res) {
