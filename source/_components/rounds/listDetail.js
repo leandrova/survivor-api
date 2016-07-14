@@ -43,11 +43,11 @@
             correntRound: correntRound,
             list: list
           },
-          reason: Func.reason(1, 0, 'Consulta realizada com sucesso.')
+          reason: Func.reason(1, 0)
         }
       } else {
         response = {
-          reason: Func.reason(0, 4000, 'Não foi possivel consultar o mapa solicitado.')
+          reason: Func.reason(0, 4000)
         }
       }
       callback(response);
