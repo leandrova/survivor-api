@@ -3,6 +3,13 @@
   var pass = req['pass'];
   var saveSession = req['saveSession'];
 
+  if ((!user)&&(!pass))
+    callback({
+      reason: Func.reason(0, 2000)
+    });
+
+  var pass = Func.md5(pass.toUpperCase());
+
   if (!saveSession)
     saveSession = 0;
 
@@ -38,7 +45,7 @@
               }
             } else {
               var response = {
-                reason: Func.reason(0, 3100, 'Não foi possivel criar a sessão para o usuário. Tente novamente..')
+                reason: Func.reason(0, 3100)
               }
             }
             callback(response);
@@ -47,7 +54,7 @@
         /**/
       } else {
         var response = {
-          reason: Func.reason(0, 2000, 'Ops! Não conseguimos identificar o usuário informado.')
+          reason: Func.reason(0, 2000)
         }
         callback(response);
       }

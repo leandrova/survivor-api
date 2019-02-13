@@ -15,6 +15,8 @@ class Players extends Base {
 @@include('../../_components/players/list.js')
 
 @@include('../../_components/checkSession.js')
+
+@@include('../../_components/auditing.js');
  
 }
 

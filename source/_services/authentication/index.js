@@ -12,9 +12,11 @@ class Authentication extends Base {
  	super();
  }
 
-@@include('../../_components/authentication/auth.js')
+@@include('../../_components/authentication/auth.js');
 
-@@include('../../_components/checkChannel.js')
+@@include('../../_components/checkChannel.js');
+
+@@include('../../_components/auditing.js')
  
 }
 

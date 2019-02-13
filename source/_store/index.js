@@ -1,7 +1,6 @@
 'use strict';
 
 var mysql	= require('mysql');
-var async = require('async');
 
 var Base = require('../_components/index.js');
 var Func = new Base();
@@ -12,33 +11,74 @@ var connection = null;
 
 class Data {
 
- constructor() {
+  constructor(){
 
- }
+  }
 
- conectDataBase() {
-  connection = mysql.createConnection({
-   connectionLimit : 100,
-   host     : process.env.DATA_HOST,
-   user     : process.env.DATA_USER,
-   password : process.env.DATA_PASS,
-   database : process.env.DATA_BASE,
-   debug    : false,
-   port     : process.env.DATA_PORT
-  });
+  // processaSql(sql, callback) {
 
-  connection.connect();
+  //   var lines = 0, pool = mysql.createPool({
+  //     connectionLimit : 100,
+  //     host     : process.env.DATA_HOST,
+  //     user     : process.env.DATA_USER,
+  //     password : process.env.DATA_PASS,
+  //     database : process.env.DATA_BASE,
+  //     debug    :  false,
+  //     port     : process.env.DATA_PORT
+  //   });
 
-  return connection;
- }
+  //   pool.getConnection(function(err,connection){
+  //     if (err) {
+  //       callback({
+  //         lines: 0,
+  //         reason: Func.reason(0, 9001, err.code)
+  //       });
+  //     } else {
 
- desconectDataBase(connection) {
-  connection.end();
- }
+  //       connection.query(sql,function(error,results){
+
+  //         if (error) {
+  //           var reason = Func.reason(0, 9002, error.code);
+  //         } else {
+  //           var reason = Func.reason(1);
+  //           var lines = results.length;
+  //         }
+  //         // connection.end();
+  //         connection.release();
+  //         /* */
+  //         callback({
+  //           error: error, 
+  //           results: results, 
+  //           lines: lines, 
+  //           reason: reason 
+  //         });
+
+  //       });
+
+  //       connection.on('error', function(error) {      
+  //         callback({
+  //           lines: 0,
+  //           reason: Func.reason(0, 9001, error.code)
+  //         });
+  //       });
+  //     }
+  //   });
+  // }
 
  processaSql(sql, callback) {
 
-  connection = this.conectDataBase();
+  var connection = mysql.createConnection({
+    connectionLimit : 100,
+    host     : process.env.DATA_HOST,
+    user     : process.env.DATA_USER,
+    password : process.env.DATA_PASS,
+    database : process.env.DATA_BASE,
+    debug    : false,
+    port     : process.env.DATA_PORT
+  });
+ 
+  connection.connect();
+
   connection.query({
       sql: sql,
       timeout: 40000 // 40s 

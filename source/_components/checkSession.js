@@ -34,7 +34,8 @@
         );
       } else {
         callback({
-          lines: 0
+          lines   : 0,
+          reason  : res.reason
         });
       }
     }

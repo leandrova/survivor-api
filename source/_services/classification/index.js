@@ -17,6 +17,8 @@ class Classification extends Base {
 @@include('../../_components/rounds/correntRound.js')
 
 @@include('../../_components/checkSession.js')
+
+@@include('../../_components/auditing.js')
  
 }
 
