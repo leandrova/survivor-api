@@ -3,7 +3,7 @@ Survifor FC
 
 ## Settings
 
-Criar arquivo .env com as seguintes configurações:
+Create `.env` file 
 
 * [DATA_HOST]
 * [DATA_USER]
@@ -15,13 +15,6 @@ Criar arquivo .env com as seguintes configurações:
 * [Npm]
 * [Gulp]
 * [Node]
-
-## Cloning
-The following steps will ensure your project is cloned properly.
-
-1. `git clone --recursive https://github.com/SpongePowered/SpongeForge.git`
-2. `cd SpongeForge`
-3. `cp scripts/pre-commit .git/hooks`
 
 ## Setup
 
