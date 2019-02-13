@@ -1,0 +1,192 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Survivor",
+		"_postman_id": "dbbfce77-b047-be13-56a2-cfefc770f3b8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"request": {
+				"url": "{{servidor}}/authentication",
+				"method": "POST",
+				"header": [
+					{
+						"key": "service-name",
+						"value": "local"
+					},
+					{
+						"key": "service-token",
+						"value": "12345"
+					},
+					{
+						"key": "user",
+						"value": "leandroviana@gmail.com"
+					},
+					{
+						"key": "pass",
+						"value": "81dc9bdb52d04dc20036dbd8313ed055"
+					},
+					{
+						"key": "saveSession",
+						"value": "1"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    user: 'user',\n    pass: 'pass'\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Round",
+			"request": {
+				"url": "{{servidor}}/rounds",
+				"method": "GET",
+				"header": [
+					{
+						"key": "service-session",
+						"value": "039da09cd2502c2ab8c49564aefe9edb",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Round Detail",
+			"request": {
+				"url": "{{servidor}}/rounds/detail",
+				"method": "POST",
+				"header": [
+					{
+						"key": "service-session",
+						"value": "039da09cd2502c2ab8c49564aefe9edb",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "roundNumber",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Classification",
+			"request": {
+				"url": "{{servidor}}/classification",
+				"method": "GET",
+				"header": [
+					{
+						"key": "service-session",
+						"value": "039da09cd2502c2ab8c49564aefe9edb",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Players",
+			"request": {
+				"url": "{{servidor}}/players",
+				"method": "GET",
+				"header": [
+					{
+						"key": "service-session",
+						"value": "039da09cd2502c2ab8c49564aefe9edb",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Betting",
+			"request": {
+				"url": "{{servidor}}/betting",
+				"method": "POST",
+				"header": [
+					{
+						"key": "service-session",
+						"value": "039da09cd2502c2ab8c49564aefe9edb",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "roundNumber",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Bet",
+			"request": {
+				"url": "{{servidor}}/betting/bet",
+				"method": "POST",
+				"header": [
+					{
+						"key": "service-session",
+						"value": "039da09cd2502c2ab8c49564aefe9edb",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "codeTeam",
+							"value": "6",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Map",
+			"request": {
+				"url": "{{servidor}}/map",
+				"method": "GET",
+				"header": [
+					{
+						"key": "service-session",
+						"value": "402d03b2cd4d8f29b8e2d3d7d45cb5ea",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
