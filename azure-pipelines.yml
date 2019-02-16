@@ -20,5 +20,12 @@ steps:
   displayName: 'npm install'
 
 - script: |
+    echo 'DATA_HOST:179.188.16.68' >> .env
+    echo 'DATA_USER:survivordev' >> .env
+    echo 'DATA_PASS:z!5uv@d3v!' >> .env
+    echo 'DATA_BASE:survivordev' >> .env
+  displayName: '.env'
+
+- script: |
     gulp build
   displayName: 'gulp build'
