@@ -29,8 +29,3 @@ steps:
 - script: |
     gulp build
   displayName: 'gulp build'
-
-- script: |
-    cd app
-    node app.js
-  displayName: 'Node Run'
