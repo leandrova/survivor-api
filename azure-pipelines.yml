@@ -20,5 +20,9 @@ steps:
   displayName: 'npm install'
 
 - script: |
+    echo "" > .env
+  displayName: 'Create .env'
+
+- script: |
     gulp build
   displayName: 'gulp build'
