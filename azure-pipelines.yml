@@ -24,12 +24,12 @@ steps:
   displayName: 'npm install'
 
 - script: |
-    npm install mocha -dev
-  displayName: 'npm install'
+    npm install mocha --only=dev
+  displayName: 'npm mocha'
 
 - script: |
-    npm install chai -dev
-  displayName: 'npm install'
+    npm install chai --only=dev
+  displayName: 'npm chai'
 
 - script: |
     echo "" > .env
