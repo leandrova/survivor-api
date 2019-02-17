@@ -16,10 +16,6 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    git pull
-  displayName: 'git pull'
-
-- script: |
     npm install
   displayName: 'npm install --only=dev'
 
