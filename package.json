@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "survivor-api",
   "main": "index.js",
-  "directories" {
+  "directories": {
     "test": "mocha"
   },
   "repository": {
