@@ -60,7 +60,10 @@ class Base {
 
   dataInterna(a) {
     var date = new Date(a);
-    return date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + date.getUTCDate();;
+    console.log(a);
+    console.log(date);
+    console.log(date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + date.getUTCDate());
+    return date.getUTCFullYear() + '-' + date.getUTCMonth() + '-' + date.getUTCDate();
   }
 
   getCookie(a, b) {
