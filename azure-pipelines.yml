@@ -24,14 +24,6 @@ steps:
   displayName: 'npm install'
 
 - script: |
-    npm install mocha --only=dev
-  displayName: 'npm mocha'
-
-- script: |
-    npm install chai --only=dev
-  displayName: 'npm chai'
-
-- script: |
     echo "" > .env
   displayName: 'Create .env'
 
@@ -40,5 +32,7 @@ steps:
   displayName: 'gulp build'
 
 - script: |
+    npm install mocha --only=dev
+    npm install chai --only=dev
     mocha
   displayName: 'Unit Test'
