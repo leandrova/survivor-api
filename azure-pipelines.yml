@@ -20,6 +20,10 @@ steps:
   displayName: 'npm install --only=dev'
 
 - script: |
+    git pull
+  displayName: 'git pull'
+
+- script: |
     echo "" > .env
   displayName: 'Create .env'
 
