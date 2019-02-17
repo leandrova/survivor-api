@@ -16,6 +16,10 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    git clone https://github.com/leandrova/survivor-api.git
+  displayName: 'git clone'
+
+- script: |
     npm install
   displayName: 'npm install --only=dev'
 
