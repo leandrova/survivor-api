@@ -16,10 +16,6 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    git clone https://github.com/leandrova/survivor-api.git
-  displayName: 'git clone'
-
-- script: |
     npm install
   displayName: 'npm install'
 
@@ -32,7 +28,7 @@ steps:
   displayName: 'gulp build'
 
 - script: |
-    npm install mocha --only=dev
-    npm install chai --only=dev
+    npm install mocha -g
+    npm install chai -g
     mocha
   displayName: 'Unit Test'
