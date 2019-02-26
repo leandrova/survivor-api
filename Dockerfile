@@ -1,15 +1,16 @@
-FROM ubuntu
+FROM node:10
 MAINTAINER Leandro Viana <leandroviana@gmail.com>
 
-RUN apt-get update && apt-get -y upgrade
-RUN apt-get install -y nodejs
+RUN mkdir -p /home/node/survivor-api/app/node_modules && chown -R node:node /home/node/survivor-api
+WORKDIR /home/node/survivor-api/app
 
-RUN rm -rf /survivor-api
-RUN mkdir /survivor-api
+COPY package*.json ./
+RUN npm install
+COPY ./app/ .
+RUN echo "" > /home/node/survivor-api/.env
 
-RUN cd /survivor-api && echo "" > .env
-
-ADD ./app /survivor-api/
-ADD ./process/node-app.sh /survivor-api/
+USER node
 
 EXPOSE 3000
+
+CMD [ "node", "app.js" ]
