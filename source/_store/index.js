@@ -15,56 +15,6 @@ class Data {
 
   }
 
-  // processaSql(sql, callback) {
-
-  //   var lines = 0, pool = mysql.createPool({
-  //     connectionLimit : 100,
-  //     host     : process.env.DATA_HOST,
-  //     user     : process.env.DATA_USER,
-  //     password : process.env.DATA_PASS,
-  //     database : process.env.DATA_BASE,
-  //     debug    :  false,
-  //     port     : process.env.DATA_PORT
-  //   });
-
-  //   pool.getConnection(function(err,connection){
-  //     if (err) {
-  //       callback({
-  //         lines: 0,
-  //         reason: Func.reason(0, 9001, err.code)
-  //       });
-  //     } else {
-
-  //       connection.query(sql,function(error,results){
-
-  //         if (error) {
-  //           var reason = Func.reason(0, 9002, error.code);
-  //         } else {
-  //           var reason = Func.reason(1);
-  //           var lines = results.length;
-  //         }
-  //         // connection.end();
-  //         connection.release();
-  //         /* */
-  //         callback({
-  //           error: error, 
-  //           results: results, 
-  //           lines: lines, 
-  //           reason: reason 
-  //         });
-
-  //       });
-
-  //       connection.on('error', function(error) {      
-  //         callback({
-  //           lines: 0,
-  //           reason: Func.reason(0, 9001, error.code)
-  //         });
-  //       });
-  //     }
-  //   });
-  // }
-
  processaSql(sql, callback) {
 
   var connection = mysql.createConnection({
@@ -105,30 +55,12 @@ class Data {
  }
 
  consulta(array) {
-
-  if (array['campos']) {
-   var sql = 'select ' + array['campos'] + ' ';;
-  } else {
-   var sql = 'select * ';
-  }
-
-  sql += 'from ' + array['tabelas'] + ' ';
-
-  if (array['condicoes']) {
-   sql += 'where ' + array['condicoes'] + ' ';
-  }
-  if (array['agrupamento']) {
-   sql += 'group by ' + array['agrupamento'] + ' ';
-  }
-  if (array['ordenacao']) {
-   sql += 'order by ' + array['ordenacao'] + ' ';
-  }
-  if (array['limite']) {
-   sql += 'limit ' + array['limite'] + ' ';
-  }
-
+  var sql = 'select ' + (array['campos'] ? array['campos'] : '*') + ' from ' + array['tabelas'];
+      sql += (array['condicoes'] ? ' where ' + array['condicoes'] : '');
+      sql += (array['agrupamento'] ? ' group by ' + array['agrupamento'] : '');
+      sql += (array['ordenacao'] ? ' order by ' + array['ordenacao'] : '');
+      sql += (array['limite'] ? ' limit ' + array['limite'] : '');
   return sql;
-
  }
 
  cadastro(array) {

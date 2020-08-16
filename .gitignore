@@ -1,4 +1,5 @@
 /.env
+/.host
 /node_modules
 /app
 /process/logs

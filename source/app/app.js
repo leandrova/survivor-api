@@ -20,14 +20,14 @@ app.all('*', function(req, res, next){
 var Base = require('./_components/index.js');
 var Func = new Base();
 
-if ( fs.statSync('../.env').isFile() ) {
-	env('../.env', { overwrite: true });
+if ( fs.statSync('./.env').isFile() ) {
+	env('./.env', { overwrite: true });
 }
 
 var port = process.env.SERVER_PORT || 80;
 
 app.get('/', function(req, res) {
-    res.send('survivor');
+    res.send('Survivor');
 });
 
 app.get('/authentication', function(req, res) {
@@ -308,9 +308,6 @@ app.post('/betting/bet', function(req, res) {
 
 });
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "localhost";
-var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
-
-app.listen(port, ipaddress, function() {
-    console.log('Is running')
+app.listen(port, () => {
+    console.log('Application is running in port: ' + port)
 });
